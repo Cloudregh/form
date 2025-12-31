@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CloudThink — Form Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #0b0f17;
+        --card: #111827;
+        --muted: #9CA3AF;
+        --text: #F9FAFB;
+        --accent: #6366F1;
+        --accent-2: #10B981;
+        --danger: #EF4444;
+        --border: #1F2937;
+        --shadow: 0 10px 30px rgba(0,0,0,0.25);
+        --radius: 14px;
+      }
+      * { box-sizing: border-box }
+      html, body { height: 100% }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: radial-gradient(1000px 600px at 80% -100px, rgba(99,102,241,0.25), transparent 60%), var(--bg);
+        color: var(--text);
+      }
+      a { color: inherit; text-decoration: none }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 0 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .brand-badge {
+        width: 36px; height: 36px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: grid; place-items: center;
+        color: #fff;
+        font-size: 18px;
+        box-shadow: var(--shadow);
+      }
+      .cta-nav {
+        display: flex; gap: 12px;
+      }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #0f1420;
+        color: var(--text);
+        transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      }
+      .btn:hover { transform: translateY(-1px); border-color: #273445 }
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, var(--accent));
+        border: none;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+      }
+      .hero-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        backdrop-filter: blur(8px);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px;
+        box-shadow: var(--shadow);
+      }
+      .eyebrow {
+        display: inline-flex; align-items: center; gap: 10px;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 14px;
+        background: #0d1320;
+        border: 1px solid var(--border);
+        padding: 8px 12px;
+        border-radius: 999px;
+      }
+      .hero h1 {
+        font-size: clamp(30px, 4.2vw, 56px);
+        line-height: 1.05;
+        margin: 16px 0 12px;
+      }
+      .sub {
+        font-size: clamp(16px, 2.2vw, 20px);
+        color: var(--muted);
+        margin-bottom: 20px;
+      }
+      .hero-actions { display: flex; gap: 12px; flex-wrap: wrap }
+      .meta {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+        margin-top: 24px;
+      }
+      .meta .stat {
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #0d1421;
+        text-align: center;
+      }
+      .stat .num { font-weight: 700; font-size: 18px }
+      .stat .label { color: var(--muted); font-size: 13px }
+      .form-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+      .form-head {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .form-head h2 {
+        font-size: 22px; margin: 0;
+      }
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .field {
+        display: grid; gap: 8px;
+      }
+      .field label {
+        font-size: 13px; color: var(--muted);
+      }
+      .input, textarea, select {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #0f1420;
+        color: var(--text);
+        outline: none;
+        transition: border-color .2s ease, box-shadow .2s ease;
+      }
+      .input:focus, textarea:focus, select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+      }
+      textarea { min-height: 120px; resize: vertical }
+      .row-span-2 { grid-column: span 2 }
+      .agree {
+        display: flex; align-items: center; gap: 10px;
+        grid-column: span 2;
+        font-size: 13px; color: var(--muted);
+      }
+      .error {
+        color: var(--danger);
+        font-size: 12px;
+      }
+      .submit {
+        display: flex; gap: 12px; align-items: center;
+        grid-column: span 2;
+      }
+      .submit .btn-primary {
+        padding: 12px 18px; font-weight: 600;
+      }
+      .success {
+        display: none;
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid #1c3a2f;
+        background: #0c1f17;
+        color: #a7f3d0;
+      }
+      footer {
+        margin-top: 40px;
+        padding: 24px 0;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+      }
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr }
+        form { grid-template-columns: 1fr }
+        .row-span-2, .agree, .submit { grid-column: span 1 }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="brand-badge">C</div>
+          <div>CloudThink</div>
+        </div>
+        <div class="cta-nav">
+          <a href="#request" class="btn">Talk to sales</a>
+          <a href="#request" class="btn btn-primary">Get started</a>
+        </div>
+      </header>
+      <section class="hero">
+        <div class="hero-card">
+          <span class="eyebrow">AI forms that convert</span>
+          <h1>Launch a high‑converting form landing page in minutes</h1>
+          <p class="sub">Collect leads, qualify prospects, and trigger workflows without code.</p>
+          <div class="hero-actions">
+            <a href="#request" class="btn btn-primary">Request a demo</a>
+            <a href="#features" class="btn">See features</a>
+          </div>
+          <div class="meta">
+            <div class="stat"><div class="num">3x</div><div class="label">Higher conversions</div></div>
+            <div class="stat"><div class="num">2 min</div><div class="label">Setup time</div></div>
+            <div class="stat"><div class="num">99.9%</div><div class="label">Uptime</div></div>
+          </div>
+        </div>
+        <div class="form-card" id="request">
+          <div class="form-head">
+            <h2>Request a demo</h2>
+            <span style="color: var(--muted); font-size: 13px">Free • No credit card</span>
+          </div>
+          <form id="lead-form" novalidate>
+            <div class="field">
+              <label for="name">Full name</label>
+              <input class="input" id="name" name="name" type="text" placeholder="Jane Doe" required minlength="2" autocomplete="name">
+              <div class="error" data-error-for="name"></div>
+            </div>
+            <div class="field">
+              <label for="email">Work email</label>
+              <input class="input" id="email" name="email" type="email" placeholder="jane@company.com" required autocomplete="email" inputmode="email">
+              <div class="error" data-error-for="email"></div>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input class="input" id="company" name="company" type="text" placeholder="Acme Inc." autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input class="input" id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" autocomplete="tel" inputmode="tel">
+            </div>
+            <div class="field row-span-2">
+              <label for="message">What are you looking to build?</label>
+              <textarea id="message" name="message" placeholder="Share goals, timeline, and constraints" required minlength="10"></textarea>
+              <div class="error" data-error-for="message"></div>
+            </div>
+            <div class="agree">
+              <input id="agree" name="agree" type="checkbox" required>
+              <label for="agree">You agree to be contacted and to our terms</label>
+              <div class="error" data-error-for="agree"></div>
+            </div>
+            <div class="submit">
+              <button type="submit" class="btn btn-primary" id="submit-btn">Request demo</button>
+              <div class="success" id="success">Thanks. We’ll be in touch shortly.</div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <footer>
+        <div>© <span id="year"></span> CloudThink</div>
+      </footer>
+    </div>
+    <script>
+      const form = document.getElementById('lead-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const successEl = document.getElementById('success');
+      const yearEl = document.getElementById('year');
+      yearEl.textContent = new Date().getFullYear();
+      function showError(key, msg) {
+        const el = document.querySelector('[data-error-for="'+key+'"]');
+        if (el) el.textContent = msg || '';
+      }
+      function validate(data) {
+        let ok = true;
+        showError('name', '');
+        showError('email', '');
+        showError('message', '');
+        showError('agree', '');
+        if (!data.name || data.name.trim().length < 2) {
+          showError('name', 'Enter your full name');
+          ok = false;
+        }
+        const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email || '');
+        if (!emailOk) {
+          showError('email', 'Enter a valid email');
+          ok = false;
+        }
+        if (!data.message || data.message.trim().length < 10) {
+          showError('message', 'Add at least 10 characters');
+          ok = false;
+        }
+        if (!data.agree) {
+          showError('agree', 'Required');
+          ok = false;
+        }
+        return ok;
+      }
+      function serialize(form) {
+        const fd = new FormData(form);
+        return Object.fromEntries(fd.entries());
+      }
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        successEl.style.display = 'none';
+        submitBtn.disabled = true;
+        const values = serialize(form);
+        values.agree = !!document.getElementById('agree').checked;
+        const ok = validate(values);
+        if (!ok) {
+          submitBtn.disabled = false;
+          return;
+        }
+        await new Promise(r => setTimeout(r, 700));
+        successEl.style.display = 'block';
+        form.reset();
+        submitBtn.disabled = false;
+      });
+    </script>
+  </body>
+</html>
